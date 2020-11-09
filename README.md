@@ -120,7 +120,7 @@ def test_zen_yandex(browser):
 ### Часть 7 - построение отчета Allure
 1. Открыть PowerShell
 2. Выполнить команду 
-> .\create_allure_reposrt.cmd
+> .\create_allure_report.cmd
 
 # Описание fixture
 В разработке...
