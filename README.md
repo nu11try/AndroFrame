@@ -113,9 +113,9 @@ def test_zen_yandex(browser):
 ### Часть 6 - запуск тестов
 1. Открыть терминал IDE
 2. Если необходимо запустить все тесты
-> pytest
+> pytest --alluredir results
 3. Если необходимо запустить кокретные тесты
-> pytest [*название теста*.py]
+> pytest --alluredir results [*название теста*.py]
 
 ### Часть 7 - построение отчета Allure
 1. Открыть PowerShell
