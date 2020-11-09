@@ -31,15 +31,7 @@ Python framework for UI testing
 5. Установить **Allure** 
 > scoop install allure
 
-### Часть 3 - установка проекта (примеры для PyCharm)
-1. Скачать проект 
-> git clone https://github.com/nu11try/AndroFrame.git
-2. Открыть среду разработку (IDE)
-3. Создать новый проект (**File** -> **New Project** -> **Pure Python**)
-4. Открыть проект в проводнике (**ПКМ** -> **Show in Explorer**)
-5. Скопировать в проект все из клонированного репозитория
-
-### Часть 4 - структура framework
+### Часть 3 - структура framework
 + **Module** - папка, в которой собраны все модули framework
    + **Core** - ядровая папка framework
      + **BasePage** - папка со стандартным шаблоном объекта BasePage.py
@@ -52,3 +44,78 @@ Python framework for UI testing
    + **Tests** - папка для хранения тестов (**ВНИМАНИЕ!** В папке должен присутствовать пустой файл \__init__.py)
    + **Conftest.py** - файл для конфигурации PyTest (содержит необходимые fixture)
    + **Create_allure_report.cmd** - файл для запуска построения отчета Allure
+
+### Часть 4 - установка проекта (примеры для PyCharm)
+1. Клонировать репозиторий 
+> git clone https://github.com/nu11try/AndroFrame.git
+2. Открыть среду разработку (IDE)
+3. Создать новый проект (**File** -> **New Project** -> **Pure Python**)
+4. Открыть проект в проводнике (**ПКМ** -> **Show in Explorer**)
+5. Скопировать в проект все из клонированного репозитория
+
+### Часть 5 - Настройка и написание тестов
+1. Создать свой шаблон строки
+2. Выполнить подключение библиотек
+```pyhton
+from selenium.webdriver.common.by import By
+from module.core.pageobject.PageObject import BasePageObject
+from module.core.pageobject.PageObject import Locators
+
+import allure
+```
+3. Создать класс с наследованием класса стандартного шаблона страницы
+```pyhton
+class Class(BasePageObject):
+```
+4. В конструкторе созданного класса инициализировать словать локаторов
+```pyhton
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.locators = Locators.LOCATORS_DICT
+```
+5. В словарь локаторов добавить необходимые локаторы (пример)
+```pyhton
+    self.locators["test"] = (By.CLASS_NAME, "test")
+    self.locators["test"] = (By.ID, "test")
+    self.locators["test"] = (By.XPATH, "test")
+    self.locators["test"] = (By.LINK_TEXT, "test")
+    self.locators["test"] = (By.PARTIAL_LINK_TEXT, "test")
+    self.locators["test"] = (By.NAME, "test")
+    self.locators["test"] = (By.TAG_NAME, "test")
+    self.locators["test"] = (By.CSS_SELECTOR, "test")
+```
+6. Написать необходимые функции, помечая декораторами (пример) (описание см. ниже)
+```pyhton
+@allure.feature("Open website")
+@allure.story("Открытие сайта")
+```
+7. Шаги функции помечать декораторами 
+```pyhton
+with allure.step("Test"):
+   code
+```
+если необходимо указать в шаг переменные, то
+```pyhton
+with allure.step(f"Test '{name}'"):
+   code
+```
+8. Создать файл с тестом
+9. Подключить свой шаблон страницы
+```pyhton
+from templates.user_pages.НАЗВАНИЕ ШАБЛОНА import НАЗВАНИЕ КЛАССА
+```
+10. Создать функции тестирование, с параметром browser (перед названием указывать test_) (пример)
+```pyhton
+def test_zen_yandex(browser):
+```
+11. Написать тест!
+
+### Часть 6 - запуск тестов
+1. Открыть терминал IDE
+2. Если необходимо запустить все тесты
+> pytest
+3. Если необходимо запустить кокретные тесты
+> pytest [*название теста*.py]
+
+### Часть 7 - построение отчета Allure
+1. Открыть 
