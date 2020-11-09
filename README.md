@@ -18,8 +18,10 @@ Python framework for UI testing
 
 ### Часть 2 - установка необходимых модулей
 1. Открыть PowerShell
-2. Выполнить > Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-3. Выполнить > iwr -useb get.scoop.sh | iex
+2. Выполнить команду
+> Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+3. Выполнить команду
+> iwr -useb get.scoop.sh | iex
 2. Установить **PyTest** 
 > pip install pytest
 3. Установить **Selenium** 
@@ -30,7 +32,8 @@ Python framework for UI testing
 > scoop install allure
 
 ### Часть 3 - установка проекта (примеры для PyCharm)
-1. Скачать проект > git clone https://github.com/nu11try/AndroFrame.git
+1. Скачать проект 
+> git clone https://github.com/nu11try/AndroFrame.git
 2. Открыть среду разработку (IDE)
 3. Создать новый проект (**File** -> **New Project** -> **Pure Python**)
 4. Открыть проект в проводнике (**ПКМ** -> **Show in Explorer**)
